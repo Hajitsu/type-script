@@ -48,3 +48,15 @@ var IranKhodro = /** @class */ (function (_super) {
 }(Car));
 var car1 = new IranKhodro('206', 2020);
 console.log(car1.foo('hamid'));
+var Bike = /** @class */ (function () {
+    function Bike(model, year) {
+        this.model = model;
+        this.year = year;
+    }
+    Bike.prototype.getModel = function () {
+        return this.model;
+    };
+    return Bike;
+}());
+var bike1 = new Bike('Hyunda', 2020);
+console.log(bike1.model);
