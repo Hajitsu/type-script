@@ -38,3 +38,4 @@ class Bike {
 
 let bike1 = new Bike('Hyunda', 2020);
 console.log(bike1.model);
+console.log(bike1.year);
