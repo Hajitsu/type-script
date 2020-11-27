@@ -60,3 +60,63 @@ var Bike = /** @class */ (function () {
 }());
 var bike1 = new Bike('Hyunda', 2020);
 console.log(bike1.model);
+console.log(bike1.year);
+var Motor = /** @class */ (function () {
+    function Motor() {
+    }
+    Motor.getInstance = function () {
+        if (!Motor.instance) {
+            Motor.instance = new Motor();
+        }
+        return Motor.instance;
+    };
+    return Motor;
+}());
+var motor1 = Motor.getInstance();
+var motor2 = Motor.getInstance();
+console.log(motor1 === motor2);
+function printLabel(labelObj) {
+    console.log(labelObj.label);
+}
+var myObj = { size: 10, label: 'Size 10', xx: 120 };
+printLabel(myObj);
+var myObj2 = { size: 20, label: 'Size 20' };
+printLabel(myObj2);
+var mySearch = function (source, subString) {
+    return source.search(subString) > -1;
+};
+var Alex = /** @class */ (function () {
+    function Alex(name, family, age) {
+        this.name = name;
+        this.family = family;
+        this.age = age;
+    }
+    Alex.prototype.fullname = function () {
+        return this.name + " " + this.family;
+    };
+    return Alex;
+}());
+var Hamid = /** @class */ (function () {
+    function Hamid(name, family, age) {
+        this.name = name;
+        this.family = family;
+        this.age = age;
+    }
+    Hamid.prototype.fullname = function () {
+        return this.name + " " + this.family;
+    };
+    return Hamid;
+}());
+var Hajitsu = /** @class */ (function () {
+    function Hajitsu(name, family, age) {
+        this.name = name;
+        this.family = family;
+        this.age = age;
+    }
+    Hajitsu.prototype.fullname = function () {
+        return this.name + " " + this.family;
+    };
+    return Hajitsu;
+}());
+var user = new Hamid('Hamid', 'Mohammadi', 32);
+console.log(user.fullname());
