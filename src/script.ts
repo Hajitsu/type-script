@@ -1,115 +1,21 @@
-abstract class Car {
-  protected model: string;
-  public year: number;
-  constructor(model: string, year: number) {
-    this.model = model;
-    this.year = year;
+class MyArray<T extends string | number, U extends boolean> {
+  constructor(public data: T[], private ata2: U[]) {}
+  addItem(item: T): void {
+    this.data.push(item);
   }
-  set setModel(theModel: string) {
-    this.model = theModel;
-  }
-  get getModel() {
-    return this.model;
-  }
-  abstract bar(name: string): string;
-  foo(name: string): void {
-    console.log(this.bar(name));
-  }
-}
-class IranKhodro extends Car {
-  bar(name: string) {
-    return "hajitsu -> " + name;
-  }
-}
-let car1 = new IranKhodro("206", 2020);
-console.log(car1.foo("hamid"));
-
-class Bike {
-  public readonly model: string;
-  public year: number;
-  constructor(model: string, year: number) {
-    this.model = model;
-    this.year = year;
-  }
-  getModel() {
-    return this.model;
+  getItem(index: number): T {
+    return this.data[index];
   }
 }
 
-let bike1 = new Bike("Hyunda", 2020);
-console.log(bike1.model);
-console.log(bike1.year);
+let myList = new MyArray<number, boolean>([1, 2, 3, 4, 5, 6, 7, 8, 9], [true, false]);
+let myList2 = new MyArray<string, boolean>(["1", "2", "3", "4", "5", "6", "7", "8", "9"], [true, true, true, false]);
+console.log(myList);
+myList.addItem(10);
+console.log(myList.data);
 
-class Motor {
-  private static instance: Motor;
-  private constructor() {}
-  public static getInstance(): Motor {
-    if (!Motor.instance) {
-      Motor.instance = new Motor();
-    }
-    return Motor.instance;
-  }
+function logParams<T extends number | string, U extends boolean | object>(x: T, y: U): void {
+  console.log(x, y);
 }
-let motor1: Motor = Motor.getInstance();
-let motor2: Motor = Motor.getInstance();
-console.log(motor1 === motor2);
 
-interface myLabel {
-  size: number;
-  label: string;
-  [propName: string]: any;
-}
-function printLabel(labelObj: myLabel): void {
-  console.log(labelObj.label);
-}
-let myObj = { size: 10, label: "Size 10", xx: 120 };
-printLabel(myObj);
-let myObj2 = { size: 20, label: "Size 20" };
-printLabel(myObj2);
-
-interface funcSearch {
-  (source: string, subString: string): boolean;
-}
-let mySearch: funcSearch = (source: string, subString: string) => {
-  return source.search(subString) > -1;
-};
-
-interface iPerson {
-  name: string;
-  family: string;
-  age: number;
-  fullname(): string;
-}
-class Alex implements iPerson {
-  constructor(public name: string, public family: string, public age: number) {}
-  fullname(): string {
-    return `${this.name} ${this.family}`;
-  }
-}
-class Hamid implements iPerson {
-  constructor(public name: string, public family: string, public age: number) {}
-  fullname(): string {
-    return `${this.name} ${this.family}`;
-  }
-}
-class Hajitsu implements iPerson {
-  constructor(public name: string, public family: string, public age: number) {}
-  fullname(): string {
-    return `${this.name} ${this.family}`;
-  }
-}
-let user: iPerson = new Hamid("Hamid", "Mohammadi", 32);
-console.log(user.fullname());
-
-function logData<T>(data: T): T {
-  return data;
-}
-function logArrayData<T>(data: T[]): T[] {
-  return data;
-}
-console.log(logData<string>("12345"));
-console.log(
-  logArrayData<string>(["1", "2", "3", "4"])
-);
-let list: number[] = [1, 2, 3, 4, 5];
-let list1: Array<number> = [1, 2, 3, 4, 5];
+logParams<string, boolean>("hajitsu", true);
