@@ -1,102 +1,115 @@
 abstract class Car {
-	protected model: string;
-	public year: number;
-	constructor(model: string, year: number) {
-		this.model = model;
-		this.year = year;
-	}
-	set setModel(theModel: string) {
-		this.model = theModel;
-	}
-	get getModel() {
-		return this.model;
-	}
-	abstract bar(name: string): string;
-	foo(name: string): void {
-		console.log(this.bar(name));
-	}
+  protected model: string;
+  public year: number;
+  constructor(model: string, year: number) {
+    this.model = model;
+    this.year = year;
+  }
+  set setModel(theModel: string) {
+    this.model = theModel;
+  }
+  get getModel() {
+    return this.model;
+  }
+  abstract bar(name: string): string;
+  foo(name: string): void {
+    console.log(this.bar(name));
+  }
 }
 class IranKhodro extends Car {
-	bar(name: string) {
-		return 'hajitsu -> ' + name;
-	}
+  bar(name: string) {
+    return "hajitsu -> " + name;
+  }
 }
-let car1 = new IranKhodro('206', 2020);
-console.log(car1.foo('hamid'));
+let car1 = new IranKhodro("206", 2020);
+console.log(car1.foo("hamid"));
 
 class Bike {
-	public readonly model: string;
-	public year: number;
-	constructor(model: string, year: number) {
-		this.model = model;
-		this.year = year;
-	}
-	getModel() {
-		return this.model;
-	}
+  public readonly model: string;
+  public year: number;
+  constructor(model: string, year: number) {
+    this.model = model;
+    this.year = year;
+  }
+  getModel() {
+    return this.model;
+  }
 }
 
-let bike1 = new Bike('Hyunda', 2020);
+let bike1 = new Bike("Hyunda", 2020);
 console.log(bike1.model);
 console.log(bike1.year);
 
 class Motor {
-	private static instance: Motor;
-	private constructor() {}
-	public static getInstance(): Motor {
-		if (!Motor.instance) {
-			Motor.instance = new Motor();
-		}
-		return Motor.instance;
-	}
+  private static instance: Motor;
+  private constructor() {}
+  public static getInstance(): Motor {
+    if (!Motor.instance) {
+      Motor.instance = new Motor();
+    }
+    return Motor.instance;
+  }
 }
 let motor1: Motor = Motor.getInstance();
 let motor2: Motor = Motor.getInstance();
 console.log(motor1 === motor2);
 
 interface myLabel {
-	size: number;
-	label: string;
-	[propName: string]: any;
+  size: number;
+  label: string;
+  [propName: string]: any;
 }
 function printLabel(labelObj: myLabel): void {
-	console.log(labelObj.label);
+  console.log(labelObj.label);
 }
-let myObj = { size: 10, label: 'Size 10', xx: 120 };
+let myObj = { size: 10, label: "Size 10", xx: 120 };
 printLabel(myObj);
-let myObj2 = { size: 20, label: 'Size 20' };
+let myObj2 = { size: 20, label: "Size 20" };
 printLabel(myObj2);
 
 interface funcSearch {
-	(source: string, subString: string): boolean;
+  (source: string, subString: string): boolean;
 }
 let mySearch: funcSearch = (source: string, subString: string) => {
-	return source.search(subString) > -1;
+  return source.search(subString) > -1;
 };
 
 interface iPerson {
-	name: string;
-	family: string;
-	age: number;
-	fullname(): string;
+  name: string;
+  family: string;
+  age: number;
+  fullname(): string;
 }
 class Alex implements iPerson {
-	constructor(public name: string, public family: string, public age: number) {}
-	fullname(): string {
-		return `${this.name} ${this.family}`;
-	}
+  constructor(public name: string, public family: string, public age: number) {}
+  fullname(): string {
+    return `${this.name} ${this.family}`;
+  }
 }
 class Hamid implements iPerson {
-	constructor(public name: string, public family: string, public age: number) {}
-	fullname(): string {
-		return `${this.name} ${this.family}`;
-	}
+  constructor(public name: string, public family: string, public age: number) {}
+  fullname(): string {
+    return `${this.name} ${this.family}`;
+  }
 }
 class Hajitsu implements iPerson {
-	constructor(public name: string, public family: string, public age: number) {}
-	fullname(): string {
-		return `${this.name} ${this.family}`;
-	}
+  constructor(public name: string, public family: string, public age: number) {}
+  fullname(): string {
+    return `${this.name} ${this.family}`;
+  }
 }
-let user: iPerson = new Hamid('Hamid', 'Mohammadi', 32);
+let user: iPerson = new Hamid("Hamid", "Mohammadi", 32);
 console.log(user.fullname());
+
+function logData<T>(data: T): T {
+  return data;
+}
+function logArrayData<T>(data: T[]): T[] {
+  return data;
+}
+console.log(logData<string>("12345"));
+console.log(
+  logArrayData<string>(["1", "2", "3", "4"])
+);
+let list: number[] = [1, 2, 3, 4, 5];
+let list1: Array<number> = [1, 2, 3, 4, 5];

@@ -42,12 +42,12 @@ var IranKhodro = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     IranKhodro.prototype.bar = function (name) {
-        return 'hajitsu -> ' + name;
+        return "hajitsu -> " + name;
     };
     return IranKhodro;
 }(Car));
-var car1 = new IranKhodro('206', 2020);
-console.log(car1.foo('hamid'));
+var car1 = new IranKhodro("206", 2020);
+console.log(car1.foo("hamid"));
 var Bike = /** @class */ (function () {
     function Bike(model, year) {
         this.model = model;
@@ -58,7 +58,7 @@ var Bike = /** @class */ (function () {
     };
     return Bike;
 }());
-var bike1 = new Bike('Hyunda', 2020);
+var bike1 = new Bike("Hyunda", 2020);
 console.log(bike1.model);
 console.log(bike1.year);
 var Motor = /** @class */ (function () {
@@ -78,9 +78,9 @@ console.log(motor1 === motor2);
 function printLabel(labelObj) {
     console.log(labelObj.label);
 }
-var myObj = { size: 10, label: 'Size 10', xx: 120 };
+var myObj = { size: 10, label: "Size 10", xx: 120 };
 printLabel(myObj);
-var myObj2 = { size: 20, label: 'Size 20' };
+var myObj2 = { size: 20, label: "Size 20" };
 printLabel(myObj2);
 var mySearch = function (source, subString) {
     return source.search(subString) > -1;
@@ -118,5 +118,15 @@ var Hajitsu = /** @class */ (function () {
     };
     return Hajitsu;
 }());
-var user = new Hamid('Hamid', 'Mohammadi', 32);
+var user = new Hamid("Hamid", "Mohammadi", 32);
 console.log(user.fullname());
+function logData(data) {
+    return data;
+}
+function logArrayData(data) {
+    return data;
+}
+console.log(logData("12345"));
+console.log(logArrayData(["1", "2", "3", "4"]));
+var list = [1, 2, 3, 4, 5];
+var list1 = [1, 2, 3, 4, 5];
