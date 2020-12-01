@@ -1,21 +1,87 @@
-class MyArray<T extends string | number, U extends boolean> {
-  constructor(public data: T[], private ata2: U[]) {}
-  addItem(item: T): void {
-    this.data.push(item);
-  }
-  getItem(index: number): T {
-    return this.data[index];
-  }
+// function auth<T extends { new (...args: any[]): any }>(constructor: T) {
+//   console.log(constructor);
+//   return class extends constructor {
+//     auth = false;
+//   };
+// }
+// @auth
+// class User {
+//   constructor(public message: string) {}
+//   name = "hajitsu";
+// }
+// let user1 = new User("hello hajitsu");
+// console.log(user1);
+/********************** */
+// function first<T extends { new (...args: any[]): any }>(constructor: T) {
+// 	console.log(constructor);
+// 	return class extends constructor {
+// 		property = "first property";
+// 	};
+// }
+// function second<T extends { new (...args: any[]): any }>(constructor: T) {
+// 	console.log(constructor);
+// 	return class extends constructor {
+// 		property = "second property";
+// 	};
+// }
+
+// @first
+// @second
+// class Person {
+// 	name = "Person Name";
+// }
+// let person = new Person();
+// console.log(person);
+/********************** */
+// function authFactory(value: boolean) {
+//   return function auth<T extends { new (...args: any[]): any }>(constructor: T) {
+//     console.log(constructor);
+//     return class extends constructor {
+//       auth = value;
+//     };
+//   };
+// }
+// function changeable(value: boolean) {
+//   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+//     console.log(target[propertyKey]);
+//     descriptor.writable = false;
+//   };
+// }
+// @authFactory(false)
+// class User {
+//   private name = "hajitsu";
+//   @changeable(false)
+//   getName() {
+//     return this.name;
+//   }
+// }
+// let user1 = new User();
+// console.log(user1);
+// user1.getName = () => "hamid";
+// console.log(user1.getName());
+
+function Emoji() {
+  return function (target: any, key: string | symbol) {
+    let val = target[key];
+    Object.defineProperty(target, key, {
+      get: () => val,
+      set: (newVal) => {
+        val = `🍦 ${newVal} 🍦`;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+  };
 }
 
-let myList = new MyArray<number, boolean>([1, 2, 3, 4, 5, 6, 7, 8, 9], [true, false]);
-let myList2 = new MyArray<string, boolean>(["1", "2", "3", "4", "5", "6", "7", "8", "9"], [true, true, true, false]);
-console.log(myList);
-myList.addItem(10);
-console.log(myList.data);
+function Log(target:any, propertyKey:string|symbol,parameterIndex:number){
 
-function logParams<T extends number | string, U extends boolean | object>(x: T, y: U): void {
-  console.log(x, y);
 }
 
-logParams<string, boolean>("hajitsu", true);
+class IceCream {
+  @Emoji()
+  flavor = "Vanile";
+  getInfo(@Log name: string) {}
+}
+let i = new IceCream();
+console.log(i.flavor);
