@@ -60,28 +60,32 @@
 // user1.getName = () => "hamid";
 // console.log(user1.getName());
 
-function Emoji() {
-  return function (target: any, key: string | symbol) {
-    let val = target[key];
-    Object.defineProperty(target, key, {
-      get: () => val,
-      set: (newVal) => {
-        val = `🍦 ${newVal} 🍦`;
-      },
-      configurable: true,
-      enumerable: true,
-    });
-  };
-}
+// function Emoji() {
+// 	return function (target: any, key: string | symbol) {
+// 		let val = target[key];
+// 		Object.defineProperty(target, key, {
+// 			get: () => val,
+// 			set: (newVal) => {
+// 				val = `🍦 ${newVal} 🍦`;
+// 			},
+// 			configurable: true,
+// 			enumerable: true,
+// 		});
+// 	};
+// }
 
-function Log(target:any, propertyKey:string|symbol,parameterIndex:number){
+// function Log(target: any, methodKey: string | symbol, parameterIndex: number) {
+// 	console.log(target, methodKey, parameterIndex);
+// }
 
-}
+// class IceCream {
+// 	@Emoji()
+// 	flavor = 'Vanile';
+// 	getInfo(@Log name: string) {}
+// }
+// let i = new IceCream();
+// console.log(i.flavor);
+// console.log(i.getInfo('hajitsu'));
 
-class IceCream {
-  @Emoji()
-  flavor = "Vanile";
-  getInfo(@Log name: string) {}
-}
-let i = new IceCream();
-console.log(i.flavor);
+import Logger from './logger';
+Logger.success('hi hajitsu');
